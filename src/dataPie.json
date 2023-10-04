@@ -1,0 +1,32 @@
+[
+	{
+		"id": "erlang",
+		"label": "erlang",
+		"value": 118,
+		"color": "hsl(351, 70%, 50%)"
+	},
+	{
+		"id": "elixir",
+		"label": "elixir",
+		"value": 268,
+		"color": "hsl(272, 70%, 50%)"
+	},
+	{
+		"id": "make",
+		"label": "make",
+		"value": 148,
+		"color": "hsl(235, 70%, 50%)"
+	},
+	{
+		"id": "stylus",
+		"label": "stylus",
+		"value": 359,
+		"color": "hsl(83, 70%, 50%)"
+	},
+	{
+		"id": "java",
+		"label": "java",
+		"value": 563,
+		"color": "hsl(107, 70%, 50%)"
+	}
+]

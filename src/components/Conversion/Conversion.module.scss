@@ -1,0 +1,27 @@
+.conversion {
+    margin-bottom: 100px;
+
+    h2 {
+        margin-bottom: 50px;
+    }
+
+    h5 {
+        margin-right: 50px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__card {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+
+    &__right {
+        width: 900px;
+        height: 200px;
+    }
+}

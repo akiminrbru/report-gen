@@ -1,0 +1,29 @@
+.app {
+    margin-top: 100px;
+    &__inner {
+        text-align: center;
+        height: 600px;
+    }
+
+    &__loading {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.block1 {
+    display: flex;
+    justify-content: space-between;
+    height: 600px;
+}
