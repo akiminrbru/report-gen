@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dataJson from '../../data.json';
 import MyResponsiveLine from '../MyResponsiveLine';
 import styles from './Systems.module.scss';
 
@@ -13,11 +12,11 @@ const Systems = ({ data }) => {
     let data2 = [];
 
     arrX.map(obj => {
-        data1.push({x: obj['1']})
+        data1.push({x: obj['1'].slice(-5)});
     });
 
     arrY.map(obj => {
-        data2.push({y: obj['1']})
+        data2.push({y: obj['1']});
     });
 
     for (let i = 0; i <= 30; i++) {

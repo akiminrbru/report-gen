@@ -5,7 +5,7 @@ export const reportsApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://report.rbru-test.ru/api/report/'}),
     endpoints: (build) => ({
         getReport: build.query({
-            query: () => 'get/56246770/8',
+            query: () => 'get/57270913/10',
         })
     })
 })
