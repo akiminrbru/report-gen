@@ -5,78 +5,48 @@ import MyResponsiveLineConversion from '../MyResponsiveLineConversion';
 const Conversion = ({ data }) => {
     let dataConversion = JSON.parse(data);
 
-    // console.log(dataConversion)
-
     let newArr = dataConversion.map(el => {
-        let copy1 = Object.assign(el);
-        let copy2 = Object.assign(el);
-        return [copy1, copy2];
+        return [structuredClone(el), structuredClone(el)];
     })
 
-    newArr[0][0].id = 'asdasd';
-
-
-    console.log(newArr)
 
     newArr.map(obj => {
-        // console.log(obj);
-        // let conv = obj[0].data.conversion;
-        // let reach = obj[1].data.reaches;
-        // let dates = obj[0].data.dates;
+        let conv = obj[0].data.conversion;
+        let reach = obj[1].data.reaches;
+        let dates = obj[0].data.dates;
 
-        // console.log(obj);
+        delete obj[0]['data'];
+        obj[0]['id'] = 'Конверсия'
+        obj[0]['data'] = [];
 
-        // console.log(conv);
-        // console.log(reach);
-        // console.log(obj[0])
-
-        // let conv2 = obj[1].data.reaches;
-        // let dates2 = obj[1].data.dates;
-
-        // delete obj[0]['data'];
-        // obj[0]['data'] = [];
-
-        // delete obj[1]['data'];
-        // obj[1]['data'] = [];
+        delete obj[1]['data'];
+        obj[1]['id'] = 'Достижения';
+        obj[1]['data'] = [];
 
                
-        // for (let i = 0; i <= 30; i++) {
-        //     obj[0]['data'].push({x: dates[i].slice(-2)});
-        //     obj[0]['data'][i]['y'] = conv[i];
-        // }
+        for (let i = 0; i <= 30; i++) {
+            obj[0]['data'].push({x: dates[i].slice(-2)});
+            obj[0]['data'][i]['y'] = conv[i];
+        }
 
-        // for (let i = 0; i <= 30; i++) {
-        //     obj[1]['data'].push({x: dates2[i].slice(-2)});
-        //     obj[1]['data'][i]['y'] = conv2[i];
-        // }
+        for (let i = 0; i <= 30; i++) {
+            obj[1]['data'].push({x: dates[i].slice(-2)});
+            obj[1]['data'][i]['y'] = reach[i];
+        }
     })
 
-    // console.log(newArr);
-
-    // dataConversion.map(obj => {
-    //     let conv = obj.data.conversion;
-    //     let dates = obj.data.dates;
-
-    //     delete obj['data'];
-    //     obj['data'] = [];
-
-               
-    //     for (let i = 0; i <= 30; i++) {
-    //         obj['data'].push({x: dates[i].slice(-2)});
-    //         obj['data'][i]['y'] = conv[i];
-    //     }
-    // });
+    console.log(newArr[0]);
 
     return (
         <div className={styles.conversion}>
             <h2>Конверсии</h2>
             <div className={styles.conversion__list}>
                 {
-                    dataConversion.map(el => (
-                        <div className={styles.conversion__card} key={el.id}>
-                            <h5>{el.name}</h5>
+                    newArr.map(el => (
+                        <div className={styles.conversion__card} key={el[0].id}>
+                            <h5>{el[0].name}</h5>
                             <div className={styles.conversion__right}>
-                                {/* <MyResponsiveLineConversion data={[el]}></MyResponsiveLineConversion> */}
+                                <MyResponsiveLineConversion data={el}></MyResponsiveLineConversion>
                             </div>
                         </div>
                     ))
