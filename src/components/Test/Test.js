@@ -10,7 +10,7 @@ export default function Test({ dannie }) {
     // console.log(dannie);
 
     let dataConversion = JSON.parse(dannie);
-
+    
     let newArr = dataConversion.map(el => {
         return [structuredClone(el)];
     });
@@ -22,22 +22,17 @@ export default function Test({ dannie }) {
 
     newArr.map(obj => {
         let conv = obj[0].data.conversion;
-        // let reach = obj[1].data.reaches;
         let dates = obj[0].data.dates;
-
-        // console.log(obj[0].data.conversion);
 
         delete obj[0]['data'];
         obj[0]['id'] = 'Конверсия'
         obj[0]['data'] = [];
          
         for (let i = 0; i <= 30; i++) {
-            obj[0]['data'].push({x: dates[i].slice(-2)});
+            obj[0]['data'].push({x: dates[i].slice(-5)});
             obj[0]['data'][i]['y'] = conv[i];
         }
     });
-
-    // console.log(newArr);
 
     newArr2.map(obj => {
         let reach = obj[0].data.reaches;
@@ -46,27 +41,23 @@ export default function Test({ dannie }) {
         delete obj[0]['data'];
         obj[0]['id'] = 'Достижения';
         obj[0]['data'] = [];
-
             
         for (let i = 0; i <= 30; i++) {
-            obj[0]['data'].push({x: dates[i].slice(-2)});
+            obj[0]['data'].push({x: dates[i].slice(-5)});
             obj[0]['data'][i]['y'] = reach[i];
         }
     });
     
-    // console.log(newArr2);
+    console.log(newArr[0]);
+    console.log(newArr2[0]);
 
-    // console.log(newArr[0])
 
-    console.log(data);
-
-    //console.log("Graph1 Data: ", data);
     return (
         <div>
         <div className="wrapper">
             <div className="graphContainer">
             <ResponsiveLine
-                data={data}
+                data={newArr[0]}
                 colors={[line1Color]}
                 layers={["grid", "axes", "lines", "markers", "legends"]}
                 axisLeft={{
@@ -103,7 +94,7 @@ const SecondGraph = ( { dannie, dannie2 }) => {
 
   return (
     <ResponsiveLine
-      data={data1And2}
+      data={dannie1AndDannie2}
       colors={[
         "rgba(255, 255, 255, 0)",
         "red"

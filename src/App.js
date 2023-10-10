@@ -3,7 +3,6 @@ import Audience from './components/Audience/Audience';
 import Conversion from './components/Conversion/Conversion';
 import Devices from './components/Devices/Devices';
 import Systems from './components/Systems/Systems';
-import Test from './components/Test/Test';
 import Traffic from './components/Traffic/Traffic';
 import { useGetReportQuery } from './redux/reportsApi';
 
@@ -21,14 +20,13 @@ const App = () => {
     <div className={styles.app}>
       <div className={styles.container}>
         <div className={styles.app__inner}>
-          <Test dannie={data[0].conversion}></Test>
-          {/* <Conversion data={data[0].conversion}></Conversion>
+          <Conversion data={data[0].conversion}></Conversion>
           <Traffic data={data[0].traffic}></Traffic>
           <Systems data={data[0].systems}></Systems>
           <div className={styles.block1}>
             <Audience data={data[0].ages}></Audience>
             <Devices data={data[0].devices}></Devices>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
