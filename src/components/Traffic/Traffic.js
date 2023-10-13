@@ -1,6 +1,5 @@
 import React from 'react'
 import MyResponsiveBar from '../MyResponsiveBar';
-import dataBarJson from '../../dataBar.json';
 import styles from './Traffic.module.scss';
 
 const Traffic = ({data}) => {

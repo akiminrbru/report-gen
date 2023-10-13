@@ -1,0 +1,148 @@
+.project {
+    &__inner {
+        padding-top: 38px;
+        padding-bottom: 50px;
+    }
+
+    &__panel {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 42px;
+    }
+
+    &__name {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        h4 {
+            color: #000;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        img {
+            cursor: pointer;
+        }
+    }
+
+    &__add {
+        cursor: pointer;
+        border: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 15px;
+        background: #000;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 15px 14px;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #ffa500;
+        }
+    }
+
+    &__btns {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    &__search {
+        width: 333px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border-radius: 15px;
+        background: #cecece;
+        padding: 4.5px 6.5px 4.25px 20px;
+
+        input {
+            background-color: transparent;
+            outline: none;
+            border: 0;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #fff;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    &__card {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #000;
+        padding-bottom: 15px;
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+
+        span {
+            color: #858585;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        h4 {
+            color: #000;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 2.5px;
+            border-radius: 15px;
+            background: #858585;
+            border: 0;
+            cursor: pointer;
+            padding: 13px 12px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ffa500;
+        }
+
+        a {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 15px 18px;
+            border-radius: 15px;
+            background: #000;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #ffa500;
+        }
+    }
+}

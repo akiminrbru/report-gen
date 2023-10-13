@@ -1,9 +1,12 @@
-import styles from './App.module.scss';
 import ReportPage from './components/ReportPage/ReportPage';
 import { useGetReportQuery } from './redux/reportsApi';
+import styles from './App.module.scss';
+import Header from './components/Header/Header';
 
 const App = () => {
   const {data, isLoading} = useGetReportQuery();
+
+  console.log(data);
 
 
   if (isLoading) return (
@@ -14,9 +17,10 @@ const App = () => {
 
   return (
     <div className={styles.app}>
+      <Header></Header>
       <div className={styles.container}>
         <div className={styles.app__inner}>
-          <ReportPage data={data}></ReportPage>
+          {/* <ReportPage data={data}></ReportPage> */}
         </div>
       </div>
     </div>

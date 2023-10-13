@@ -1,7 +1,5 @@
 import MyResponsivePie from '../MyResponsivePie';
-import { useState } from 'react';
 import styles from './Devices.module.scss'
-import dataJson from '../../data.json';
 
 const Devices = ({data}) => {
     let dataDevices = JSON.parse(data);
