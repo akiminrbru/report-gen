@@ -37,8 +37,27 @@ const Systems = ({ data }) => {
 
     return (
         <div className={styles.systems}>
-            <h2>Поисковые системы</h2>
-            <MyResponsiveLine data={mainData}></MyResponsiveLine>
+            <h2>4.Поисковые системы</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Источники трафика</td>
+                        <td>Яндекс</td>
+                        <td>Google</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Переходы из поисковых систем</td>
+                        <td>951</td>
+                        <td>43</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div className={styles.graf}>
+                <MyResponsiveLine data={mainData}></MyResponsiveLine>
+            </div>
+            <p>Переходы из Яндекса были выше, чем из остальных поисковых систем в данный отчетный период.</p>
         </div>
     )
 }

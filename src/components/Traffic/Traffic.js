@@ -26,8 +26,35 @@ const Traffic = ({data}) => {
 
   return (
     <div className={styles.traffic}>
-      <h2>Источник траффика за период</h2>
-      <MyResponsiveBar data={data1}></MyResponsiveBar>
+      <h2>3. Источник траффика за период</h2>
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td>Источники трафика</td>
+            <td>Визиты</td>
+            <td>Посетители</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Июль</td>
+            <td>Переходы из поисковых систем</td>
+            <td>876</td>
+            <td>581</td>
+          </tr>
+          <tr>
+            <td>Август</td>
+            <td>Переходы из поисковых систем</td>
+            <td>994</td>
+            <td>676</td>
+          </tr>
+        </tbody>
+      </table>
+      <div className={styles.graf}>
+        <MyResponsiveBar data={data1}></MyResponsiveBar>
+      </div>
+      <p>Наблюдается увеличение визитов и посетителей по сравнению с предыдущим периодом. <br/> В августе на 118 визитов больше, чем в августе, и на 82 посетителя больше, чем месяцем ранее.</p>
     </div>
   )
 }

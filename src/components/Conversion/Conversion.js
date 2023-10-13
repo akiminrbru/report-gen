@@ -8,7 +8,7 @@ const Conversion = ({ data }) => {
 
     return (
         <div className={styles.conversion}>
-            <h2>Конверсии</h2>
+            <h2>2.Конверсии</h2>
             <div className={styles.conversion__list}>
                 {
                     dataConversion.map(el => (

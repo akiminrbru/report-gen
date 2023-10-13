@@ -18,8 +18,11 @@ const Audience = ({data}) => {
 
     return (
         <div className={styles.audience}> 
-            <h2>Аудитория сайта</h2>
-            <MyResponsivePie data={arr}></MyResponsivePie>
+            <h2>5.Аудитория сайта</h2>
+            <div className={styles.graf}>
+                <MyResponsivePie data={arr}></MyResponsivePie>
+            </div>
+            <p>Аудитория сайта преимущественно 35-44 года.</p>
         </div>
   )
 }

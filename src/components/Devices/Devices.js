@@ -19,8 +19,11 @@ const Devices = ({data}) => {
 
     return (
         <div className={styles.devices}>
-            <h2>Типы устройств</h2>
-            <MyResponsivePie data={arr}></MyResponsivePie>
+            <h2>6.Типы устройств</h2>
+            <div className={styles.graf}>
+                <MyResponsivePie data={arr}></MyResponsivePie>
+            </div>
+            <p>Аудитория сайта в основном заходит со смартфонов.</p>
         </div>
     )
 }

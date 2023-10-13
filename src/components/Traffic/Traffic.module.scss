@@ -1,4 +1,26 @@
 .traffic {
-    height: 600px;
     margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid grey;
+        padding: 20px;
+
+        tr {
+            border: 1px solid grey;
+            padding: 20px;
+        }
+
+        td {
+            border: 1px solid grey;
+            padding: 20px;
+        }
+    }
+}
+
+.graf {
+    height: 600px;
 }
