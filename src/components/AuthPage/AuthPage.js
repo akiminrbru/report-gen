@@ -4,9 +4,6 @@ import { useGetAuthQuery } from '../../redux/usersApi';
 import { useState } from 'react';
 
 const AuthPage = () => {
-  
-
-
   // const {data, isLoading, error} = useGetAuthQuery();
 
   let [login, setLogin] = useState('');

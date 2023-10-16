@@ -9,7 +9,5 @@ export const store = configureStore({
         [projectsApi.reducerPath]: projectsApi.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(reportsApi.middleware),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(usersApi.middleware),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectsApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(projectsApi.middleware).concat(usersApi.middleware).concat(reportsApi.middleware),
 })

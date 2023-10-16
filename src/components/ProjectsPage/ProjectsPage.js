@@ -4,41 +4,23 @@ import plus from '../../assets/plus.svg';
 import search from '../../assets/search.svg';
 import { useGetAllProjectsQuery } from '../../redux';
 import { ProjectsCard } from './ProjectsCard';
+import ProjectsForm from './ProjectsForm';
+import { useEffect, useState } from 'react';
+
 
 const ProjectsPage = () => {
-    // const {data, isLoading, error} = useGetAllProjectsQuery();
+    const {data, isLoading, error} = useGetAllProjectsQuery();
+    
 
-    // console.log(error);
+    let [isOpen, setIsOpen] = useState(false);
 
-    // let response = fetch("https://report.rbru-test.ru/api/project/all", {
-    //     method: "GET",
-    //     headers: {
-    //         Authorization: localStorage.getItem('token')
-    //     }
-    // })
+    // console.log(data);
 
-    let projects = [
-        {
-            "id": 1,
-            "name": "боборол",
-            "counter_id": 56246770,
-            "brands": "boboroll,бобороллллл"
-        },
-        {
-            "id": 2,
-            "name": "euroexpert",
-            "counter_id": 56721241,
-            "brands": "euroexpert,евроэксперт"
-        },
-        {
-            "id": 3,
-            "name": "gvozdi",
-            "counter_id": 57270913,
-            "brands": "gvozditut,гвоздитут"
-        }
-    ];
-
-    console.log(projects)
+    if (isLoading) return (
+        <div className={styles.projects__loading}>
+          <h1>Загрузка...</h1>
+        </div>
+    )
 
     return (
         <>
@@ -47,7 +29,7 @@ const ProjectsPage = () => {
                 <div className='container'>
                     <div className={styles.projects__inner}>
                         <div className={styles.projects__panel}>
-                            <button className={styles.projects__add}>
+                            <button onClick={() => setIsOpen(true)} className={styles.projects__add}>
                                 <img src={plus}></img> Добавить проект
                             </button>
                             <div className={styles.projects__search}>
@@ -57,12 +39,13 @@ const ProjectsPage = () => {
                         </div>
                         <div className={styles.projects__list}>
                             {
-                                projects.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
+                                data.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
                             }
                         </div>
                     </div>
                 </div>
             </main>
+            <ProjectsForm isOpen={isOpen} setIsOpen={setIsOpen}></ProjectsForm>
         </>
     )
 }

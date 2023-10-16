@@ -1,4 +1,11 @@
 .projects {
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
     &__inner {
         padding-top: 38px;
         padding-bottom: 133px;
@@ -121,5 +128,124 @@
         button:hover {
             background-color: #ffa500;
         }
+    }
+
+    &__formWrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__formWrapDis {
+        display: none;
+    }
+
+    &__formInner {
+        border-radius: 20px;
+        background: #fff;
+        padding: 122px 47px 53px 47px;
+        position: relative;
+    }
+
+    &__formContent {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+            gap: 110px;
+        }
+    }
+
+    &__form {
+        label {
+            color: #000;
+            font-size: 24px;
+            font-weight: 700;
+            width: 250px;
+        }
+
+        button {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 15px;
+            background: #000;
+            padding: 15px;
+            cursor: pointer;
+            border: 0;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 75px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #ffa500;
+        }
+    }
+
+    &__formInput {
+        border-radius: 15px;
+        background: #f5f5f5;
+        outline: none;
+        border: 0;
+        padding: 15px 22px;
+        color: #000;
+        font-size: 18px;
+        font-weight: 700;
+        width: 100%;
+    }
+
+    &__formLeft {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+    }
+
+    &__formRight {
+        width: 611px;
+    }
+
+    &__formWarning {
+        color: red;
+        margin-top: 3px;
+        margin-left: 10px;
+    }
+
+    &__formClose {
+        display: flex;
+        align-items: center;
+        gap: 2.5px;
+        position: absolute;
+        top: 25px;
+        right: 52px;
+        border-radius: 15px;
+        background: #858585;
+        cursor: pointer;
+        border: 0;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 15px 10px;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #ffa500;
+        }
+    }
+
+    &__formArea {
+        border-radius: 15px;
+        background: #f5f5f5;
+        padding: 15px 22px;
+        min-height: 180px;
     }
 }

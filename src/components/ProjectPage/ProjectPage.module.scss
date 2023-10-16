@@ -1,4 +1,11 @@
 .project {
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
     &__inner {
         padding-top: 38px;
         padding-bottom: 50px;

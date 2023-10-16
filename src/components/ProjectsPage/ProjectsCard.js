@@ -11,7 +11,7 @@ export const ProjectsCard = ({ data }) => {
             <h4>{data.name}</h4>
         </div>  
         <div className={styles.projects__right}>
-            <Link to={`/project/${data.id}`}>Подробнее</Link>
+            <Link to={`/project/${data.counter_id}`}>Подробнее</Link>
             <button>
                 <img src={plus}></img>
                 Создать отчет

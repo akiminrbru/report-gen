@@ -1,0 +1,32 @@
+.chip {
+    border-radius: 10px;
+    background: #cecece;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+    width: fit-content;
+
+    img {
+        cursor: pointer;
+    }
+
+    &__wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 5px;
+    }
+
+    &__input {
+        padding: 0;
+        border: 0;
+        outline: none;
+        background-color: transparent;
+        color: #000;
+        font-size: 18px;
+        font-weight: 700;
+    }
+}
