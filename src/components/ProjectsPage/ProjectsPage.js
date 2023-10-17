@@ -5,20 +5,39 @@ import search from '../../assets/search.svg';
 import { useGetAllProjectsQuery } from '../../redux';
 import { ProjectsCard } from './ProjectsCard';
 import ProjectsForm from './ProjectsForm';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Loader from "react-js-loader";
+import { useSelector } from 'react-redux';
 
 
 const ProjectsPage = () => {
     const {data, isLoading, error} = useGetAllProjectsQuery();
     
-
     let [isOpen, setIsOpen] = useState(false);
+
+    const [searchText, setSearchText] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
+    // console.log(data);
+    
+    const handleInputChange = (e) => {
+        const query = e.target.value;
+        setSearchText(query);
+    
+        const filteredResults = data.filter(item =>
+            item.name.toLowerCase().includes(query.toLowerCase())
+        );
+    
+        // setSearchResults(filteredResults);
+        console.log(filteredResults)
+    };
+    
 
     // console.log(data);
 
     if (isLoading) return (
         <div className={styles.projects__loading}>
-          <h1>Загрузка...</h1>
+          <Loader type="spinner-default" bgColor={"#000"} color={"#000"} title={"Загрузка..."} size={100} />
         </div>
     )
 
@@ -33,13 +52,18 @@ const ProjectsPage = () => {
                                 <img src={plus}></img> Добавить проект
                             </button>
                             <div className={styles.projects__search}>
-                                <input type='text' placeholder='Поиск'></input>
+                                <input type='text' value={searchText} onChange={handleInputChange} placeholder='Поиск'></input>
                                 <img src={search}></img>
                             </div>
                         </div>
                         <div className={styles.projects__list}>
+                        <ul>
+                            {/* {searchResults.map((result, index) => (
+                            <li key={index}>{result}</li>
+                            ))} */}
+                        </ul>
                             {
-                                data.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
+                                data === null ? <div>Список проеков пуст</div> : data.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
                             }
                         </div>
                     </div>

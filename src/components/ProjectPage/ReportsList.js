@@ -3,9 +3,7 @@ import styles from './ProjectPage.module.scss';
 import ProjectCard from './ProjectCard';
 import { useParams } from 'react-router-dom';
 import { useGetAllReportsQuery } from '../../redux';
-
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Loader from "react-js-loader";
 
 const ReportsList = () => {
     let params = useParams();    
@@ -13,8 +11,7 @@ const ReportsList = () => {
 
     if (isLoading) return (
         <div >
-          <h1>Загрузка...</h1>
-          {/* <Skeleton count={5} height={70}/> */}
+          <Loader type="spinner-default" bgColor={"#000"} color={"#000"} title={"Загрузка..."} size={100} />
         </div>
     )
     

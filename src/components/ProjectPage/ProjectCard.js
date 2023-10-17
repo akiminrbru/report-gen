@@ -12,7 +12,7 @@ const ProjectCard = ({data}) => {
         </div>
         <div className={styles.project__right}>
             <button>
-                <img src={del}></img>
+                <img src={del} alt='#'></img>
                 Удалить отчет
             </button>
             <a href="#">Посмотреть отчет</a>

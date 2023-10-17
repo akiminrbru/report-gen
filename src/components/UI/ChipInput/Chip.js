@@ -6,7 +6,7 @@ const Chip = ({ label, onDelete }) => {
   return (
     <div className={styles.chip}>
         {label}
-        <img src={deleteChipIcon} onClick={onDelete}></img>
+        <img src={deleteChipIcon} onClick={onDelete} alt='#'></img>
     </div>
   )
 }

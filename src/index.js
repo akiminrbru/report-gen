@@ -12,12 +12,13 @@ import AuthPage from "./components/AuthPage/AuthPage";
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import ProjectsPage from './components/ProjectsPage/ProjectsPage';
 import ProjectPage from './components/ProjectPage/ProjectPage';
+import CreateReport from './components/CreateReport/CreateReport';
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <ProjectsPage/>,
         errorElement: <ErrorPage/>,
     },
     {
@@ -25,13 +26,13 @@ const router = createBrowserRouter([
       element: <AuthPage/>,
     },
     {
-        path: "/projects",
-        element: <ProjectsPage/>,
-    },
-    {
         path: "/project/:counterId",
         element: <ProjectPage/>,
     },
+    {
+        path: "/createReport/:counterId",
+        element: <CreateReport/>
+    }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

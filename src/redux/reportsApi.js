@@ -9,7 +9,7 @@ export const reportsApi = createApi({
                 url: `all/${counter}`,
                 method: "GET",
                 headers: {
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 }
             }),
         }),
@@ -18,11 +18,34 @@ export const reportsApi = createApi({
                 url: "get/57270913/10",
                 method: "GET",
                 headers: {
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }),
+        }),
+        getReportGoals: build.query({
+            query: (counter) => ({
+                url: `get-goals/${counter}`,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }),
+        }),
+        getReportConversion: build.query({
+            query: ({counter, goal_id, datefrom, dateto}) => ({
+                url: `get-conversion/${counter}`,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                },
+                params: {
+                    "goal-id": goal_id,
+                    "dateform": datefrom,
+                    "dateto": dateto
                 }
             }),
         }),
     })
 })
 
-export const { useGetAllReportsQuery, useGetReportQuery } = reportsApi;
+export const { useGetAllReportsQuery, useGetReportQuery, useGetReportGoalsQuery, useGetReportConversionQuery} = reportsApi;

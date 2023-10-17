@@ -10,7 +10,7 @@ export const projectsApi = createApi({
                 url: "all",
                 method: "GET",
                 headers: {
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 }
             }),
             providesTags: [{type: 'project', id: 'list'}],
@@ -20,16 +20,17 @@ export const projectsApi = createApi({
                 url: `get/${counter}`,
                 method: "GET",
                 headers: {
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 }
             }),
+            providesTags: [{type: 'project', id: 'list'}],
         }),
         createProject: build.mutation({
-            query: ({counter, name, brands = ''}) => ({
+            query: ({ counter, name, brands }) => ({
                 url: `set/${counter}`,
-                method: "POST",
+                method: "GET",
                 headers: {
-                    "Authorization": localStorage.getItem('token')
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
                 params: {
                     name,
@@ -38,7 +39,22 @@ export const projectsApi = createApi({
             }),
             invalidatesTags: [{type: 'project', id: 'list'}],
         }),
+        changeProject: build.mutation({
+            query: ({ currentCounter, counter, name, brands }) => ({
+                url: `change/${currentCounter}`,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                },
+                params: {
+                    name,
+                    brands,
+                    // counter
+                }
+            }),
+            invalidatesTags: [{type: 'project', id: 'list'}],
+        }),
     }),
 });
 
-export const { useGetAllProjectsQuery, useGetProjectQuery, useCreateProjectMutation } = projectsApi;
+export const { useGetAllProjectsQuery, useGetProjectQuery, useCreateProjectMutation, useChangeProjectMutation } = projectsApi;
