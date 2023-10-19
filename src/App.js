@@ -1,29 +1,95 @@
-import ReportPage from './components/ReportPage/ReportPage';
-import { useGetReportQuery } from './redux/reportsApi';
 import styles from './App.module.scss';
-import Header from './components/Header/Header';
+import { useSelector } from 'react-redux';
+import ProjectsPage from './components/ProjectsPage/ProjectsPage';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import AuthPage from './components/AuthPage/AuthPage';
+import ProjectPage from './components/ProjectPage/ProjectPage';
+import CreateReport from './components/CreateReport/CreateReport';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate
+} from "react-router-dom";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsAuth } from './redux/authSlice';
+import { useGetAllProjectsQuery } from './redux';
+import Loader from "react-js-loader";
+
+
+const routerAuth = [
+  {
+      path: "/",
+      element: <ProjectsPage/>,
+      errorElement: <Navigate to="/" replace />,
+  },
+  {
+    path: "/auth",
+    element: <AuthPage/>,
+  },
+  {
+      path: "/project/:counterId",
+      element: <ProjectPage/>,
+  },
+  {
+      path: "/createReport/:counterId",
+      element: <CreateReport/>
+  },
+];
+
+const routerNotAuth = [
+  {
+    path: "/",
+    element: <AuthPage/>,
+    errorElement: <Navigate to="/" replace />,
+  },
+];
 
 const App = () => {
-  const {data, isLoading} = useGetReportQuery();
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const dispatch = useDispatch();
 
-  console.log(data);
+  // const {data, isLoading, error} = useGetAllProjectsQuery();
+
+  useEffect(() => {
+    try {
+      fetch('https://report.rbru-test.ru/api/project/all', {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+      }).then(data => {
+        if (data.ok) {
+          dispatch(setIsAuth(true));
+        } else {
+          dispatch(setIsAuth(false));
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+  }, [isAuth]);
 
 
-  if (isLoading) return (
-    <div className={styles.app__loading}>
-      <h1>Загрузка...</h1>
-    </div>
-  )
+  const router = createBrowserRouter(
+    isAuth ? routerAuth : routerNotAuth
+  );
 
+  // if (isLoading) return (
+  //     <div className={styles.projects__loading}>
+  //       <Loader type="spinner-default" bgColor={"#000"} color={"#000"} title={"Загрузка..."} size={100} />
+  //     </div>
+  // )
+
+  // if (data) {
+  //   dispatch(setIsAuth(true));
+  // } else {
+  //   dispatch(setIsAuth(false));
+  // }
+  
   return (
-    <div className={styles.app}>
-      <Header></Header>
-      <div className={styles.container}>
-        <div className={styles.app__inner}>
-          {/* <ReportPage data={data}></ReportPage> */}
-        </div>
-      </div>
-    </div>
+    <RouterProvider router={router}>
+    </RouterProvider>
   )
 }
 

@@ -5,35 +5,30 @@ import search from '../../assets/search.svg';
 import { useGetAllProjectsQuery } from '../../redux';
 import { ProjectsCard } from './ProjectsCard';
 import ProjectsForm from './ProjectsForm';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Loader from "react-js-loader";
-import { useSelector } from 'react-redux';
 
 
 const ProjectsPage = () => {
+    const [searchText, setSearchText] = useState('');
     const {data, isLoading, error} = useGetAllProjectsQuery();
     
     let [isOpen, setIsOpen] = useState(false);
 
-    const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    const searchResults = useMemo(() => {
+        if (!data) {
+            return [];
+        }
 
-    // console.log(data);
-    
+        return data.filter(item =>
+            item.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+    }, [data, searchText]);
+        
     const handleInputChange = (e) => {
-        const query = e.target.value;
-        setSearchText(query);
-    
-        const filteredResults = data.filter(item =>
-            item.name.toLowerCase().includes(query.toLowerCase())
-        );
-    
-        // setSearchResults(filteredResults);
-        console.log(filteredResults)
+        setSearchText(e.target.value);
     };
     
-
-    // console.log(data);
 
     if (isLoading) return (
         <div className={styles.projects__loading}>
@@ -57,13 +52,8 @@ const ProjectsPage = () => {
                             </div>
                         </div>
                         <div className={styles.projects__list}>
-                        <ul>
-                            {/* {searchResults.map((result, index) => (
-                            <li key={index}>{result}</li>
-                            ))} */}
-                        </ul>
                             {
-                                data === null ? <div>Список проеков пуст</div> : data.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
+                                data === null ? <div>Список проеков пуст</div> : searchResults.map(el => <ProjectsCard data={el} key={el.id}></ProjectsCard>)
                             }
                         </div>
                     </div>

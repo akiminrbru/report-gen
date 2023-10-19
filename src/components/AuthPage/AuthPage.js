@@ -2,13 +2,18 @@ import styles from './AuthPage.module.scss';
 import logo from '../../assets/logo.svg';
 import { useGetAuthQuery } from '../../redux/usersApi';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setIsAuth } from '../../redux/authSlice';
+
 
 const AuthPage = () => {
   // const {data, isLoading, error} = useGetAuthQuery();
-
   let [login, setLogin] = useState('');
   let [password, setPassword] = useState('');
-  
+  const dispatch = useDispatch();
+
+
   let getAuth = async (login, password) => {
     let user = {
       login,
@@ -18,17 +23,13 @@ const AuthPage = () => {
     let response = await fetch('https://report.rbru-test.ru/api/login', {
       method: "POST",
       body: JSON.stringify(user)
-    }).then(data => {
-      if (data.ok) {
-        return data.json();
-      } else {
-        console.log(data);
-      }
+    }).then(data => data.json()).then(data => {
+        // console.log(data.jwt);
+        localStorage.setItem('token', data.jwt);
+        dispatch(setIsAuth(true));
+    }).catch(err => {
+      console.log(err);
     })
-
-    console.log(response)
-
-    localStorage.setItem('token', response.jwt);
   }
   
   return (
