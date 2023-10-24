@@ -1,26 +1,26 @@
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
-let post = {
-    "login": "admin",
-    "password": "123456"
-}
-
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://report.rbru-test.ru/api/'}),
     endpoints: (build) => ({
-        getAuth: build.query({
+        getAuth: build.mutation({
             query: (user) => ({
                 url: 'login',
                 method: 'POST',
-                body: JSON.stringify(post)
+                body: JSON.stringify(user)
             }),
-            transformResponse: (response) => {
-                console.log(response)
-                localStorage.setItem('token', response.jwt)
-            }
+        }),
+        isAuth: build.mutation({
+            query: (user) => ({
+                url: 'project/all',
+                method: 'GET',
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                }
+            }),
         })
     })
 })
 
-export const { useGetAuthQuery } = usersApi;
+export const { useGetAuthMutation, useIsAuthMutation } = usersApi;

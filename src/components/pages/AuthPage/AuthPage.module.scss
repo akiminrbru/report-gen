@@ -4,6 +4,12 @@
     justify-content: center;
     align-items: center;
     background: #d4d4d4;
+
+    &__formWarning {
+        padding-top: 5px;
+        text-align: center;
+        color: red;
+    }
 }
 
 .auth__inner {
@@ -32,6 +38,7 @@
             padding: 21px 32px;
             color: #515151;
             font-size: 18px;
+            width: 100%;
         }
 
         button {

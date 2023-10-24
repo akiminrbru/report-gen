@@ -1,5 +1,5 @@
 import styles from './ProjectPage.module.scss';
-import del from '../../assets/delete.svg'
+import del from '../../../assets/delete.svg'
 
 
 const ProjectCard = ({data}) => {

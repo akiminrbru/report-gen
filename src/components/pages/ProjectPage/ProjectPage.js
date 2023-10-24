@@ -1,18 +1,16 @@
-import Header from '../Header/Header';
+import Header from '../../Header/Header';
 import styles from './ProjectPage.module.scss';
-import plus from '../../assets/plus.svg';
-import search from '../../assets/search.svg';
-import edit from '../../assets/edit.svg';
-import arrowLeftIcon from '../../assets/arrowLeft.svg';
-import { useGetAllReportsQuery, useGetProjectQuery } from '../../redux';
+import plus from '../../../assets/plus.svg';
+import search from '../../../assets/search.svg';
+import edit from '../../../assets/edit.svg';
+import arrowLeftIcon from '../../../assets/arrowLeft.svg';
+import { useGetAllReportsQuery, useGetProjectQuery } from '../../../redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReportsList from './ReportsList';
 import Loader from "react-js-loader";
 import ProjectForm from './ProjectForm';
 import { useState, useMemo } from 'react';
 import ProjectCard from './ProjectCard';
-
-
 
 
 const ProjectPage = () => {

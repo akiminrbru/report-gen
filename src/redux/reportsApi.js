@@ -22,7 +22,7 @@ export const reportsApi = createApi({
                 }
             }),
         }),
-        getReportGoals: build.query({
+        getReportGoals: build.mutation({
             query: (counter) => ({
                 url: `get-goals/${counter}`,
                 method: "GET",
@@ -31,8 +31,8 @@ export const reportsApi = createApi({
                 }
             }),
         }),
-        getReportConversion: build.query({
-            query: ({counter, goal_id, datefrom, dateto}) => ({
+        getReportConversion: build.mutation({
+            query: (counter, goal_id, datefrom, dateto) => ({
                 url: `get-conversion/${counter}`,
                 method: "GET",
                 headers: {
@@ -48,4 +48,4 @@ export const reportsApi = createApi({
     })
 })
 
-export const { useGetAllReportsQuery, useGetReportQuery, useGetReportGoalsQuery, useGetReportConversionQuery} = reportsApi;
+export const { useGetAllReportsQuery, useGetReportQuery, useGetReportGoalsMutation, useGetReportConversionMutation} = reportsApi;

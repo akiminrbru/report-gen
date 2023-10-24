@@ -1,5 +1,5 @@
 import styles from './ProjectsPage.module.scss';
-import plus from '../../assets/plus.svg';
+import plus from '../../../assets/plus.svg';
 import { Link, useNavigate } from 'react-router-dom';
 
 

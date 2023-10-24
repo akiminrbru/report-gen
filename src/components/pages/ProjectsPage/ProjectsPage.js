@@ -1,8 +1,8 @@
-import Header from '../Header/Header';
+import Header from '../../Header/Header';
 import styles from './ProjectsPage.module.scss';
-import plus from '../../assets/plus.svg';
-import search from '../../assets/search.svg';
-import { useGetAllProjectsQuery } from '../../redux';
+import plus from '../../../assets/plus.svg';
+import search from '../../../assets/search.svg';
+import { useGetAllProjectsQuery } from '../../../redux';
 import { ProjectsCard } from './ProjectsCard';
 import ProjectsForm from './ProjectsForm';
 import { useState, useMemo } from 'react';

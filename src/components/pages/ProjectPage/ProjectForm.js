@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import styles from './ProjectsPage.module.scss';
-import closeIcon from '../../assets/delete.svg'
-import ChipInput from '../UI/ChipInput/ChipInput';
-import { useCreateProjectMutation } from '../../redux/projectsApi';
+import styles from '../ProjectsPage/ProjectsPage.module.scss';
+import closeIcon from '../../../assets/delete.svg'
+import ChipInput from '../../UI/ChipInput/ChipInput';
+import { useChangeProjectMutation, useCreateProjectMutation } from '../../../redux/projectsApi';
 import { useForm } from "react-hook-form"; 
 
-const ProjectsForm = ({isOpen, setIsOpen}) => { 
-    const [createProject, result] = useCreateProjectMutation();
+const ProjectForm = ({isOpen, setIsOpen, counter}) => { 
+    const [changeProject, result] = useChangeProjectMutation();
 
     const [chips, setChips] = useState([]); 
 
@@ -18,13 +18,16 @@ const ProjectsForm = ({isOpen, setIsOpen}) => {
     } = useForm();
 
     const onSubmit = async (data) => {
-        let createProjectData =  {
-            counter: data.counterProject,
+
+        console.log(data);
+        let changeProjectData =  {
+            currentCounter: counter,
+            // counter: data.counterProject,
             name: data.nameProject,
             brands: chips.join(),
         }
 
-        let response = await createProject(createProjectData).then(res => res).catch(res => res).finally(res => (
+        let response = await changeProject(changeProjectData).then(res => res).catch(res => res).finally(res => (
             setChips([]),
             reset()
         ));
@@ -36,7 +39,7 @@ const ProjectsForm = ({isOpen, setIsOpen}) => {
             alert(response.error.data);
         } else if (response.data === true) {
             setIsOpen(false);
-            alert("Проект успешно создан!");
+            alert("Проект успешно изменен!");
         }
     };
 
@@ -54,13 +57,12 @@ const ProjectsForm = ({isOpen, setIsOpen}) => {
                                 {errors?.nameProject?.type === "required" && <p className={styles.projects__formWarning}>Укажите название проекта</p>}
                             </div>    
                         </div>
-                        <div>
+                        {/* <div>
                             <label>Счетчик проекта</label>
                             <div className={styles.projects__formRight}>
-                                <input className={styles.projects__formInput} {...register("counterProject", { required: true, maxLength: 100 })}></input>
-                                {errors?.counterProject?.type === "required" && <p className={styles.projects__formWarning}>Укажите счетчик проекта</p>}
+                                <input className={styles.projects__formInput} {...register("counterProject", { maxLength: 100 })}></input>
                             </div>
-                        </div>
+                        </div> */}
                         <div>
                             <label>Брендовые запросы</label>
                             <div className={styles.projects__formRight}>
@@ -71,11 +73,11 @@ const ProjectsForm = ({isOpen, setIsOpen}) => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" disabled={chips.length == 0 ? true : false}>Добавить</button>
+                    <button type="submit" disabled={chips.length == 0 ? true : false}>Сохранить</button>
                 </form>
             </div>
         </div>
     )
 }
 
-export default ProjectsForm;
+export default ProjectForm;
