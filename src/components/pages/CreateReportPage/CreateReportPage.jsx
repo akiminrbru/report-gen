@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CreateReportPage.module.scss";
 import Header from "../../Header/Header";
 import editIcon from "../../../assets/edit.svg";
 import saveIcon from "../../../assets/save.svg";
 import okeyIcon from "../../../assets/okey.svg";
 import closeIcon from "../../../assets/delete.svg";
+import arrowUpIcon from "../../../assets/arrowUp.svg";
+import arrowDownIcon from "../../../assets/arrowDown.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useGetProjectQuery, useGetReportConversionMutation, useGetReportGoalsMutation, useGetReportGoalsQuery } from "../../../redux";
+import { useGetProjectQuery, useGetReportConversionActiveMutation, useGetReportConversionMutation, useGetReportGoalsMutation, useGetReportGoalsQuery } from "../../../redux";
 import { useParams } from "react-router-dom";
 import Loader from "react-js-loader";
+import ConversionBlock from "../../Conversion/Conversion";
 
 const CreateReport = () => {
 	const [nameReport, setNameReport] = useState("Новый отчет");
@@ -90,7 +93,7 @@ export const Conversion = ({ startDate, endDate }) => {
 
 	const [getReportGolas, { isLoading }] = useGetReportGoalsMutation();
 
-	const getGolas = () => {
+	const getGoals = () => {
 		getReportGolas(params.counterId)
 			.unwrap()
 			.then((res) => {
@@ -108,45 +111,130 @@ export const Conversion = ({ startDate, endDate }) => {
 					<h5 className={styles.createReport__stepTitle}>Конверсии</h5>
 				</div>
 				<div className={styles.createReport__stepTopRight}>
-					<button
-						onClick={() => {
-							setToggle(!toggle);
-							getGolas();
-						}}
-						className={toggle ? styles.createReport__stepTopBtn : styles.createReport__stepTopBtnActive}>
-						{toggle ? <img src={okeyIcon}></img> : <img src={closeIcon}></img>}
-						{toggle ? "Включить" : "Выключить"}
-					</button>
+					{toggle ? (
+						<button
+							onClick={() => {
+								setToggle(!toggle);
+							}}
+							className={styles.createReport__stepTopBtnActive}>
+							<img src={closeIcon}></img>
+							Выключить
+						</button>
+					) : (
+						<button
+							onClick={() => {
+								setToggle(!toggle);
+								getGoals();
+							}}
+							className={styles.createReport__stepTopBtn}>
+							<img src={okeyIcon}></img>
+							Включить
+						</button>
+					)}
 				</div>
 			</div>
-			<div className={styles.createReport__stepContent}>{isLoading ? "Загрузка" : data.map((el) => <ConversionOne data={el} key={el.id} startDate={startDate} endDate={endDate} />)}</div>
+			{toggle ? <div className={styles.createReport__stepContent}>{isLoading ? "Загрузка" : data.map((el) => <ConversionOne data={el} key={el.id} startDate={startDate} endDate={endDate} getGoals={getGoals} />)}</div> : <></>}
 		</div>
 	);
 };
 
-export const ConversionOne = ({ data, startDate, endDate }) => {
+export const ConversionOne = ({ data, startDate, endDate, getGoals }) => {
 	let params = useParams();
 
-	let counter = params.counterId;
-	let goal_id = data.id;
-	let datefrom = startDate;
-	let dateto = endDate;
+	const [isGoalOpen, setIsGoalOpen] = useState(false);
+	const [goalData, setGoalData] = useState();
 
-	// console.log(data);
+	const formatDate = (date) => {
+		return date.getFullYear() + "-" + ("0" + date.getMonth()).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+	};
 
 	const [getReportConversion, { isLoading }] = useGetReportConversionMutation();
 
+	const [getReportConversionActive] = useGetReportConversionActiveMutation();
+
 	const getGoal = () => {
-		getReportConversion(params.counterId, goal_id, datefrom, dateto)
+		let sendData = {
+			counter: params.counterId,
+			goal: data.id,
+			datefrom: formatDate(startDate),
+			dateto: formatDate(endDate),
+		};
+
+		setIsGoalOpen(true);
+
+		getReportConversion(sendData)
 			.unwrap()
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res);
+				setGoalData(res);
+			})
 			.catch((err) => console.log(err));
 	};
 
+	const getGoalActive = (active) => {
+		let sendDataActive = {
+			counter: params.counterId,
+			id: data.id,
+			active: active,
+		};
+
+		getReportConversionActive(sendDataActive)
+			.unwrap()
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+		getGoals();
+	};
+
 	return (
-		<div className={styles.createReport__conversionCard}>
-			<input type="checkbox" />
-			<p onClick={() => getGoal()}>Клик по номеру телефона</p>
+		<div>
+			<div className={styles.createReport__conversionCard}>
+				<input
+					checked={data.active ? "true" : ""}
+					onChange={(e) => {
+						getGoalActive(data.active ? "0" : "1");
+					}}
+					type="checkbox"
+				/>
+				{isGoalOpen ? (
+					<p
+						onClick={() => {
+							setIsGoalOpen(false);
+						}}>
+						{data.name} <img src={arrowUpIcon}></img>
+					</p>
+				) : (
+					<p
+						onClick={() => {
+							getGoal();
+						}}>
+						{data.name} <img src={arrowDownIcon}></img>
+					</p>
+				)}
+			</div>
+			{!isGoalOpen ? (
+				<></>
+			) : isLoading ? (
+				<>Загрузка...</>
+			) : (
+				<div className={styles.createReport__conversionCardContent}>
+					<div className={styles.createReport__conversionCardContentLeft}>
+						<ConversionBlock data={goalData}></ConversionBlock>
+					</div>
+					<div className={styles.createReport__conversionCardContentRight}>
+						<ul>
+							<li>
+								Конверсия: <span>{goalData?.data.conversion_sum} %</span>
+							</li>
+							<li>
+								Достижения цели: <span>{goalData?.data.reaches_sum}</span>
+							</li>
+							<li>
+								Целевые визиты: <span>{goalData?.data.visits_sum}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

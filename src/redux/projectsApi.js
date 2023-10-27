@@ -54,6 +54,7 @@ export const projectsApi = createApi({
             }),
             invalidatesTags: [{type: 'project', id: 'list'}],
         }),
+        
     }),
 });
 

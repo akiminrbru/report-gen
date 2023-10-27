@@ -1,15 +1,33 @@
-export const getColoredAxis = (color) => {
+// export const getColoredAxis = (color) => {
+//     return {
+//       axis: {
+//         ticks: {
+//           line: {
+//             stroke: color
+//           },
+//           text: { fill: color }
+//         },
+//         legend: {
+//           text: {
+//             fill: color
+//           }
+//         }
+//       }
+//     };
+//   };
+
+  export const getColoredAxis = (color) => {
     return {
       axis: {
         ticks: {
           line: {
-            stroke: color
+            stroke: "#858585"
           },
-          text: { fill: color }
+          text: { fill: "#858585" }
         },
         legend: {
           text: {
-            fill: color
+            fill: "#858585"
           }
         }
       }

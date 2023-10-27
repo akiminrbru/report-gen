@@ -159,12 +159,47 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        margin-left: 10px;
 
         p {
             color: #000;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        img {
+            width: 12px;
+        }
+    }
+
+    &__conversionCardContent {
+        display: flex;
+        gap: 27px;
+        align-items: center;
+    }
+
+    &__conversionCardContentLeft {
+        width: 1100px;
+    }
+
+    &__conversionCardContentRight {
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #000;
+            font-family: "Inter", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        span {
+            color: #e17248;
         }
     }
 }
