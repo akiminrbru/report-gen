@@ -150,6 +150,7 @@
     }
 
     &__stepContent {
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -159,7 +160,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        margin-left: 10px;
+        margin-left: 5px;
 
         p {
             color: #000;

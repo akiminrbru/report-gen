@@ -13,6 +13,7 @@ import { useGetProjectQuery, useGetReportConversionActiveMutation, useGetReportC
 import { useParams } from "react-router-dom";
 import Loader from "react-js-loader";
 import ConversionBlock from "../../Conversion/Conversion";
+import MyEditor from "../../MyEditor/MyEditor";
 
 const CreateReport = () => {
 	const [nameReport, setNameReport] = useState("Новый отчет");
@@ -75,6 +76,7 @@ const CreateReport = () => {
 										</div>
 										<div></div>
 									</div>
+									<div className="styles.createReport__stepContent"></div>
 								</div>
 								<Conversion startDate={startDate} endDate={endDate} />
 							</>

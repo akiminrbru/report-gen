@@ -4,7 +4,7 @@ import SecondGraph from "../SecondGraph/SecondGraph";
 import data from "../../Test/data";
 import { getColoredAxis } from "../color";
 
-const line1Color = "black";
+const line1Color = "red";
 
 const FirstGraph = ({ data }) => {
 	console.log(data);
@@ -76,8 +76,10 @@ const FirstGraph = ({ data }) => {
 					layers={["grid", "axes", "lines", "markers", "legends"]}
 					enableGridX={false}
 					enableGridY={false}
-					enablePoints={false}
 					axisBottom={null}
+					pointColor="#ffffff"
+					pointBorderWidth={1}
+					pointBorderColor="#ff0000"
 					curve="catmullRom"
 					axisLeft={{
 						legend: "Конверсия %",

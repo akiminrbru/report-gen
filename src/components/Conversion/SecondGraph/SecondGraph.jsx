@@ -9,7 +9,7 @@ const SecondGraph = ({ data1, data2 }) => {
 	return (
 		<ResponsiveLine
 			data={data1AndData2}
-			colors={["rgba(255, 255, 255, 0)", "red"]} /* Make the first line transparent with 0 opacity */
+			colors={["rgba(255, 255, 255, 0)", "black"]} /* Make the first line transparent with 0 opacity */
 			margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
 			axisRight={{
 				legend: "Достижения",
@@ -26,9 +26,7 @@ const SecondGraph = ({ data1, data2 }) => {
 			enableGridY={false}
 			axisBottom={null}
 			pointSize={8}
-			pointColor="#ffffff"
-			pointBorderWidth={1}
-			pointBorderColor="#ff0000"
+			enablePoints={false}
 			theme={getColoredAxis("red")}
 			/* Add this for tooltip */
 			useMesh={true}
