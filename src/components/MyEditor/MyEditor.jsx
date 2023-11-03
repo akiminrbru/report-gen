@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { createReactEditorJS } from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "./constants";
 
-const MyEditor = () => {
-	const ReactEditorJS = createReactEditorJS();
+const ReactEditorJS = createReactEditorJS();
 
+function MyEditor() {
 	const [editorValue, setEditorValue] = useState({
 		time: new Date().getTime(),
 		blocks: [
@@ -18,7 +18,22 @@ const MyEditor = () => {
 		version: "2.1.0",
 	});
 
-	return <ReactEditorJS tools={EDITOR_JS_TOOLS} data={editorValue} />;
-};
+	const editorJS = useRef(null);
+
+	const handleInitialize = useCallback((instance) => {
+		editorJS.current = instance;
+	}, []);
+
+	const handleSave = useCallback(async () => {
+		const savedData = await editorJS.current.save();
+		console.log(savedData);
+	}, []);
+
+	const handleClear = useCallback(async () => {
+		await editorJS.current.clear();
+	}, []);
+
+	return <ReactEditorJS tools={EDITOR_JS_TOOLS} onInitialize={handleInitialize} />;
+}
 
 export default MyEditor;

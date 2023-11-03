@@ -9,3 +9,17 @@
     max-width: 1320px;
     margin: 0 auto;
 }
+
+.ce-block__content {
+    max-width: 100%;
+    margin-left: 50px;
+}
+
+.ce-toolbar {
+    left: 50px;
+    right: auto;
+}
+
+.codex-editor--narrow .codex-editor__redactor {
+    padding-bottom: 0 !important;
+}

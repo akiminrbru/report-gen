@@ -17,11 +17,17 @@ import MyEditor from "../../MyEditor/MyEditor";
 
 const CreateReport = () => {
 	const [nameReport, setNameReport] = useState("Новый отчет");
+
 	// const [startDate, setStartDate] = useState(new Date());
 	// const [endDate, setEndDate] = useState(new Date().setMonth(new Date().getMonth() - 1));
 
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
+
+	useEffect(() => {
+		console.log(startDate);
+		console.log(endDate);
+	}, [startDate, endDate]);
 
 	const handleChange = ([newStartDate, newEndDate]) => {
 		setStartDate(newStartDate);
@@ -66,21 +72,22 @@ const CreateReport = () => {
 								</div>
 							</div>
 						</div>
-						{startDate && endDate && (
-							<>
-								<div className={styles.createReport__step}>
-									<div className={styles.createReport__stepTop}>
-										<div className={styles.createReport__stepTopLeft}>
-											<span className={styles.createReport__stepNumber}>2</span>
-											<h5 className={styles.createReport__stepTitle}>Видимость по семантическому ядру</h5>
-										</div>
-										<div></div>
+
+						<div style={{ display: startDate && endDate ? "block" : "none" }}>
+							<div className={styles.createReport__step}>
+								<div className={styles.createReport__stepTop}>
+									<div className={styles.createReport__stepTopLeft}>
+										<span className={styles.createReport__stepNumber}>2</span>
+										<h5 className={styles.createReport__stepTitle}>Видимость по семантическому ядру</h5>
 									</div>
-									<div className="styles.createReport__stepContent"></div>
+									<div></div>
 								</div>
-								<Conversion startDate={startDate} endDate={endDate} />
-							</>
-						)}
+								<div className="styles.createReport__stepContent">
+									<MyEditor />
+								</div>
+							</div>
+							<Conversion startDate={startDate} endDate={endDate} />
+						</div>
 					</div>
 				</div>
 			</main>
