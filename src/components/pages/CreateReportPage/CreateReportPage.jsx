@@ -24,10 +24,10 @@ const CreateReport = () => {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
 
-	useEffect(() => {
-		console.log(startDate);
-		console.log(endDate);
-	}, [startDate, endDate]);
+	// useEffect(() => {
+	// 	console.log(startDate);
+	// 	console.log(endDate);
+	// }, [startDate, endDate]);
 
 	const handleChange = ([newStartDate, newEndDate]) => {
 		setStartDate(newStartDate);

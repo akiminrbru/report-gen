@@ -1,7 +1,7 @@
 import { ResponsiveLine } from "@nivo/line";
 import { getColoredAxis } from "../color";
 
-const line1Color = "black";
+const line1Color = "red";
 
 const SecondGraph = ({ data1, data2 }) => {
 	const data1AndData2 = data1.concat(data2);
@@ -9,7 +9,7 @@ const SecondGraph = ({ data1, data2 }) => {
 	return (
 		<ResponsiveLine
 			data={data1AndData2}
-			colors={["rgba(255, 255, 255, 0)", "black"]} /* Make the first line transparent with 0 opacity */
+			colors={["rgba(255, 255, 255, 0)", line1Color]} /* Make the first line transparent with 0 opacity */
 			margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
 			axisRight={{
 				legend: "Достижения",
@@ -26,7 +26,8 @@ const SecondGraph = ({ data1, data2 }) => {
 			enableGridY={false}
 			axisBottom={null}
 			pointSize={8}
-			enablePoints={false}
+			pointBorderWidth={2}
+			// enablePoints={true}
 			theme={getColoredAxis("red")}
 			/* Add this for tooltip */
 			useMesh={true}
@@ -42,32 +43,30 @@ const SecondGraph = ({ data1, data2 }) => {
 							color: "#fff",
 						}}>
 						{/* <div>Дата: {slice.points[0].data.x}</div> */}
-						{slice.points.map(
-							(point) => (
-								console.log(point),
-								point.serieId === "Конверсия" ? (
-									<div
-										key={point.id}
-										style={{
-											color: "#fff",
-											padding: "3px 0",
-										}}>
-										<p>
-											{point.serieId} {point.data.yFormatted} %
-										</p>
-									</div>
-								) : (
-									<div
-										key={point.id}
-										style={{
-											color: "#fff",
-											padding: "3px 0",
-										}}>
-										<p>
-											{point.serieId} {point.data.yFormatted}
-										</p>
-									</div>
-								)
+						{slice.points.map((point) =>
+							// console.log(point),
+							point.serieId === "Конверсия" ? (
+								<div
+									key={point.id}
+									style={{
+										color: "#fff",
+										padding: "3px 0",
+									}}>
+									<p>
+										{point.serieId} {point.data.yFormatted} %
+									</p>
+								</div>
+							) : (
+								<div
+									key={point.id}
+									style={{
+										color: "#fff",
+										padding: "3px 0",
+									}}>
+									<p>
+										{point.serieId} {point.data.yFormatted}
+									</p>
+								</div>
 							)
 						)}
 					</div>

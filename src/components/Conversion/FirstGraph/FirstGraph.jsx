@@ -4,7 +4,7 @@ import SecondGraph from "../SecondGraph/SecondGraph";
 import data from "../../Test/data";
 import { getColoredAxis } from "../color";
 
-const line1Color = "red";
+const line1Color = "black";
 
 const FirstGraph = ({ data }) => {
 	console.log(data);
@@ -64,8 +64,8 @@ const FirstGraph = ({ data }) => {
 	//     }
 	// });
 
-	console.log(newArr);
-	console.log(newArr2);
+	// console.log(newArr);
+	// console.log(newArr2);
 
 	return (
 		<div className="wrapper">
@@ -77,16 +77,27 @@ const FirstGraph = ({ data }) => {
 					enableGridX={false}
 					enableGridY={false}
 					axisBottom={null}
-					pointColor="#ffffff"
-					pointBorderWidth={1}
-					pointBorderColor="#ff0000"
+					enablePoints={false}
+					pointSize={4}
 					curve="catmullRom"
 					axisLeft={{
-						legend: "Конверсия %",
+						legend: "Конверсия",
 						legendPosition: "middle",
 						legendOffset: -40,
 						tickSize: 0,
 						tickPadding: 13,
+						renderTick: ({ textAnchor, textBaseline, textX, textY, theme, value, x, y }) => {
+							return (
+								console.log(value),
+								(
+									<g transform={`translate(${x},${y})`}>
+										<text fontSize="10px" alignmentBaseline={textBaseline} textAnchor={textAnchor} transform={`translate(${textX + 7},${textY})`}>
+											{value} %
+										</text>
+									</g>
+								)
+							);
+						},
 					}}
 					theme={getColoredAxis(line1Color)}
 					margin={{ top: 50, right: 50, bottom: 50, left: 50 }}

@@ -48,11 +48,11 @@ const App = () => {
   useEffect(() => {
     checkIsAuth().unwrap()
     .then(res => {
-      console.log(res);
+      // console.log(res);
       dispatch(setIsAuth(true));
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       dispatch(setIsAuth(false));
     })
   }, [isAuth]);
@@ -76,8 +76,6 @@ const App = () => {
   //   }
   // }, [isAuth]);
 
-
-  
 
   if (isLoading) return (
       <div className={styles.app__loading}>
