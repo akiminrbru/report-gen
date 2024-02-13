@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Conversion.module.scss";
-import MyResponsiveLineConversion from "../MyResponsiveLineConversion";
+import MyResponsiveLineConversion from "../../MyResponsiveLineConversion";
 import FirstGraph from "./FirstGraph/FirstGraph";
 
 const ConversionBlock = ({ data }) => {

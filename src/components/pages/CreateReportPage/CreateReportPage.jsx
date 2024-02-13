@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CreateReportPage.module.scss";
-import Header from "../../Header/Header";
 import editIcon from "../../../assets/edit.svg";
 import saveIcon from "../../../assets/save.svg";
-import okeyIcon from "../../../assets/okey.svg";
-import closeIcon from "../../../assets/delete.svg";
+import okeyIcon from "../../../assets/icons/okey.svg";
+import closeIcon from "../../../assets/icons/close.svg";
 import arrowUpIcon from "../../../assets/arrowUp.svg";
 import arrowDownIcon from "../../../assets/arrowDown.svg";
 import DatePicker from "react-datepicker";
@@ -12,8 +11,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGetProjectQuery, useGetReportConversionActiveMutation, useGetReportConversionMutation, useGetReportGoalsMutation, useGetReportGoalsQuery } from "../../../redux";
 import { useParams } from "react-router-dom";
 import Loader from "react-js-loader";
-import ConversionBlock from "../../Conversion/Conversion";
+import ConversionBlock from "../../blocks/Conversion/Conversion";
 import MyEditor from "../../MyEditor/MyEditor";
+import Layout from "../../layout/Layout/Layout";
+import CommonButton from "../../common/button/CommonButton";
+import CommonCheckbox from "../../common/checkbox/CommonCheckbox";
 
 const CreateReport = () => {
 	const [nameReport, setNameReport] = useState("Новый отчет");
@@ -46,9 +48,8 @@ const CreateReport = () => {
 
 	return (
 		<>
-			<Header></Header>
-			<main className={styles.createReport}>
-				<div className="container">
+			<Layout>
+				<div className={styles.createReport}>
 					<div className={styles.createReport__inner}>
 						<div className={styles.createReport__panel}>
 							<h3>{data.name}</h3>
@@ -56,10 +57,7 @@ const CreateReport = () => {
 								<img src={editIcon} alt="#"></img>
 								<input value={nameReport} onChange={(e) => setNameReport(e.target.value)}></input>
 							</div>
-							<button className={styles.createReport__btnSave}>
-								<img src={saveIcon} alt="#"></img>
-								Сохранить
-							</button>
+							<CommonButton imgLink={saveIcon} color={"black"} text={"Сохранить"} />
 						</div>
 						<div className={styles.createReport__step}>
 							<div className={styles.createReport__stepTop}>
@@ -80,7 +78,7 @@ const CreateReport = () => {
 										<span className={styles.createReport__stepNumber}>2</span>
 										<h5 className={styles.createReport__stepTitle}>Видимость по семантическому ядру</h5>
 									</div>
-									<div></div>
+									{/* <div></div> */}
 								</div>
 								<div className="styles.createReport__stepContent">
 									<MyEditor />
@@ -90,7 +88,7 @@ const CreateReport = () => {
 						</div>
 					</div>
 				</div>
-			</main>
+			</Layout>
 		</>
 	);
 };
@@ -121,28 +119,28 @@ export const Conversion = ({ startDate, endDate }) => {
 				</div>
 				<div className={styles.createReport__stepTopRight}>
 					{toggle ? (
-						<button
-							onClick={() => {
+						<CommonButton
+							handler={() => {
 								setToggle(!toggle);
 							}}
-							className={styles.createReport__stepTopBtnActive}>
-							<img src={closeIcon}></img>
-							Выключить
-						</button>
+							imgLink={closeIcon}
+							text={"Выключить"}
+							color={"gray"}
+						/>
 					) : (
-						<button
-							onClick={() => {
+						<CommonButton
+							handler={() => {
 								setToggle(!toggle);
 								getGoals();
 							}}
-							className={styles.createReport__stepTopBtn}>
-							<img src={okeyIcon}></img>
-							Включить
-						</button>
+							imgLink={okeyIcon}
+							text={"Включить"}
+							color={"black"}
+						/>
 					)}
 				</div>
 			</div>
-			{toggle ? <div className={styles.createReport__stepContent}>{isLoading ? "Загрузка" : data.map((el) => <ConversionOne data={el} key={el.id} startDate={startDate} endDate={endDate} getGoals={getGoals} />)}</div> : <></>}
+			{toggle ? <div className={styles.createReport__stepContent}>{isLoading ? <Loader type="spinner-default" bgColor={"#000"} color={"#000"} title={"Загрузка..."} size={100} /> : data.map((el) => <ConversionOne data={el} key={el.id} startDate={startDate} endDate={endDate} getGoals={getGoals} />)}</div> : <></>}
 		</div>
 	);
 };
@@ -196,6 +194,7 @@ export const ConversionOne = ({ data, startDate, endDate, getGoals }) => {
 
 	return (
 		<div>
+			<CommonCheckbox />
 			<div className={styles.createReport__conversionCard}>
 				<input
 					checked={data.active ? "true" : ""}

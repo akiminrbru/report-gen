@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './ReportPage.module.scss'
 import Conversion from '../Conversion/Conversion'
 import Traffic from '../Traffic/Traffic'

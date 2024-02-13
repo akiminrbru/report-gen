@@ -1,4 +1,7 @@
 .projects {
+    padding-top: 38px;
+    padding-bottom: 133px;
+
     &__loading {
         display: flex;
         align-items: center;
@@ -6,34 +9,10 @@
         height: 100vh;
     }
 
-    &__inner {
-        padding-top: 38px;
-        padding-bottom: 133px;
-    }
-
     &__panel {
         display: flex;
         justify-content: space-between;
         margin-bottom: 40px;
-    }
-
-    &__add {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        border-radius: 15px;
-        background: #000;
-        padding: 15px 14px;
-        border: 0;
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 700;
-
-        &:hover {
-            background-color: #ffa500;
-        }
     }
 
     &__search {
@@ -94,39 +73,6 @@
         display: flex;
         gap: 17px;
         align-items: center;
-    }
-
-    &__linkMore {
-        border-radius: 15px;
-        background: #858585;
-        padding: 15px 16px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 700;
-        text-decoration: none;
-        transition: color 0.2s ease-in-out;
-
-        &:hover {
-            color: #ffa500;
-        }
-    }
-
-    &__linkCreate {
-        border-radius: 15px;
-        background: #000;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 15px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 700;
-        transition: background-color 0.2s ease-in-out;
-        text-decoration: none;
-
-        &:hover {
-            background-color: #ffa500;
-        }
     }
 
     &__formWrap {

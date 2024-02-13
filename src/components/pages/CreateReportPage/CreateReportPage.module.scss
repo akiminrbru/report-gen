@@ -1,14 +1,12 @@
 .createReport {
+    padding-top: 38px;
+    padding-bottom: 133px;
+
     &__loading {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100vh;
-    }
-
-    &__inner {
-        padding-top: 38px;
-        padding-bottom: 133px;
     }
 
     h3 {
@@ -21,25 +19,6 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 72px;
-    }
-
-    &__btnSave {
-        border-radius: 15px;
-        background: #000;
-        cursor: pointer;
-        border: 0;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 700;
-        padding: 15px 14px;
-        transition: background-color 0.2s ease-in-out;
-
-        &:hover {
-            background-color: #ffa500;
-        }
     }
 
     &__nameReport {

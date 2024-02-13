@@ -1,13 +1,13 @@
 import "./FirstGraph.css";
 import { ResponsiveLine } from "@nivo/line";
 import SecondGraph from "../SecondGraph/SecondGraph";
-import data from "../../Test/data";
+import data from "../../../Test/data";
 import { getColoredAxis } from "../color";
 
 const line1Color = "black";
 
 const FirstGraph = ({ data }) => {
-	console.log(data);
+	// console.log(data);
 
 	let newArr = structuredClone(data);
 	let newArr2 = structuredClone(data);

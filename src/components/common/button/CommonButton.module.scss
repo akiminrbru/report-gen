@@ -1,0 +1,43 @@
+.button {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 5px;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+
+    p {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &[data-use="big"] {
+        padding: 16px 24px;
+      }
+
+      &[data-use="small"] {
+        padding: 11px 24px;
+    }
+    
+    &[data-color="black"] {
+        background-color: #000;
+        p {
+          color: #fff;
+        }
+    }
+
+    &[data-color="gray"] {
+        background-color: #858585;
+        p {
+          color: #fff;
+        }
+    }
+}
+
